@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forma — a flexible canvas for your next dashboard.">
+  <title>Forma — Dashboard studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237460e8'/%3E%3Cpath d='M9 8h16v5H14v4h9v5h-9v5H9z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Forma home"><span class="brand-mark">f<span>◦</span></span>forma<span class="studio">STUDIO</span></a>
+    <span class="top-divider"></span>
+    <div class="document"><input id="dashboard-name" aria-label="Dashboard name" value="Business overview" maxlength="120"><span id="save-status" role="status">Connecting…</span></div>
+    <div class="top-actions"><button id="undo" class="icon-button" title="Undo (Ctrl/⌘ Z)" aria-label="Undo">↶</button><button id="redo" class="icon-button" title="Redo (Ctrl/⌘ Shift Z)" aria-label="Redo">↷</button><span class="top-divider"></span><button id="preview" class="button secondary">▷ <span>Preview</span></button><button id="save" class="button primary">↑ <span>Save dashboard</span></button><span class="avatar" title="Local workspace">JD</span></div>
+  </header>
+  <div class="workspace">
+    <nav class="rail" aria-label="Editor panels"><button class="rail-button active" data-tab="elements" aria-label="Elements" title="Elements">⊞</button><button class="rail-button" data-tab="layers" aria-label="Layers" title="Layers">▱</button><div class="rail-bottom"><button id="export" class="rail-button" aria-label="Export layout JSON" title="Export layout JSON">⇩</button><button id="help" class="rail-button help" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button></div></nav>
+    <aside class="library">
+      <div class="panel-heading"><h2>Your building blocks</h2><span class="tiny-badge">5</span></div>
+      <p class="panel-description">Small pieces. Endless possibilities.</p>
+      <div class="tabs"><button data-tab="elements" class="active">Elements</button><button data-tab="layers">Layers <span id="layer-count"></span></button></div>
+      <div id="elements-panel"><label class="search"><span>⌕</span><input id="search" placeholder="Find an element…" aria-label="Find an element"><kbd>/</kbd></label>
+        <h3 class="eyebrow">LAYOUT</h3><button class="component section-component" data-add="section"><span class="component-symbol">▤</span><span><strong>Section</strong><small>A container for your ideas</small></span><span class="plus">+</span></button>
+        <h3 class="eyebrow">BASIC ELEMENTS</h3><div class="component-grid"><button class="component" data-add="text"><span class="component-symbol text-symbol">T<span>t</span></span><strong>Text</strong><small>Give it a voice</small></button><button class="component" data-add="image"><span class="component-symbol">▧</span><strong>Image</strong><small>Add a little visual</small></button></div>
+        <h3 class="eyebrow">DATA & INSIGHTS</h3><div class="component-grid"><button class="component" data-add="bar"><span class="mini-bars"><i></i><i></i><i></i><i></i></span><strong>Bar chart</strong><small>Compare the details</small></button><button class="component" data-add="line"><svg class="mini-line" viewBox="0 0 70 40" aria-hidden="true"><path d="M3 34 19 22 31 28 46 10 64 4"/></svg><strong>Line chart</strong><small>See the bigger trend</small></button></div>
+        <div class="library-note"><span>✧</span><strong>A canvas that works like you.</strong><p>Click a block to add it. Drag to make it yours.</p><span class="note-decoration">▱ ◯ ▧</span></div>
+      </div>
+      <div id="layers-panel" hidden><p class="panel-description">Select a layer to fine-tune it.</p><div id="layer-list"></div></div>
+      <div class="library-footer"><span class="status-dot"></span> Your personal workspace <span>↗</span></div>
+    </aside>
+    <main class="main">
+      <div class="canvas-toolbar"><div class="breadcrumb">Workspace <span>/</span> <strong>Business overview</strong><span class="pill">DRAFT</span></div><div class="view-controls"><button class="device active" data-device="desktop" aria-label="Desktop canvas" title="Desktop canvas">▱</button><button class="device" data-device="mobile" aria-label="Mobile preview width" title="Mobile preview width">▯</button><span class="toolbar-divider"></span><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-fit" title="Fit canvas">70%</button><button id="zoom-in" aria-label="Zoom in">+</button></div></div>
+      <div id="mode-banner" hidden>Browser demo · Start PHP/MySQL to save to the database.</div>
+      <div class="canvas-scroll" id="canvas-scroll"><div class="canvas-stage" id="canvas-stage"><div class="canvas-label"><span>BUSINESS OVERVIEW</span><span id="canvas-dimensions">1040 × 1000</span></div><div id="canvas" aria-label="Dashboard editing canvas"></div></div></div>
+      <footer class="canvas-footer"><span><span class="status-dot"></span> <span id="mode-label">Connecting</span></span><span id="selection-status">Click an element to get started</span><span>Made to make it yours <span class="purple">✦</span></span></footer>
+    </main>
+    <aside class="inspector"><div class="panel-heading"><h2>Design</h2><span class="inspector-icon">☷</span></div><div class="inspector-subtitle">The details make the difference.</div><div id="properties"></div></aside>
+  </div>
+  <input id="image-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+  <div id="toast" role="status" hidden></div>
+  <dialog id="help-dialog"><h2>A few helpful shortcuts</h2><p>Click to select. Drag any block to move it. Pull its corner or edge handles to resize.</p><p>Double-click text to edit. Select words, then use <b>Bold</b> or <i>Italic</i> in the Design panel.</p><p>Select a section before adding a block to place it inside. Use Container to move an existing block into a section.</p><dl><dt>Undo / Redo</dt><dd>Ctrl/⌘ Z / Shift Z</dd><dt>Save</dt><dd>Ctrl/⌘ S</dd><dt>Duplicate</dt><dd>Ctrl/⌘ D</dd><dt>Move selection</dt><dd>Arrow keys (Shift for 10 px)</dd><dt>Remove</dt><dd>Delete / Backspace</dd></dl><form method="dialog"><button class="button primary">Got it</button></form></dialog>
+</body>
+</html>

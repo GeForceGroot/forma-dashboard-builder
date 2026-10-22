@@ -1,0 +1,9 @@
+-- Select/create your database before importing. Compatible with MySQL 8+.
+CREATE TABLE IF NOT EXISTS dashboards (
+    id BIGINT UNSIGNED PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    layout JSON NOT NULL,
+    version INT UNSIGNED NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

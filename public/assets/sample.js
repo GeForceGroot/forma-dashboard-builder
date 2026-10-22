@@ -1,0 +1,14 @@
+export const sampleLayout = {
+  width: 1040, height: 1000, background: '#ffffff', elements: [
+    { id: 'heading', type: 'text', parentId: null, name: 'Dashboard heading', x: 40, y: 24, width: 650, height: 92, background: '#ffffff', color: '#202331', radius: 0, fontSize: 28, content: { runs: [{ text: 'A little perspective.\n', bold: true, italic: false }, { text: 'Your business, at a glance.', bold: false, italic: false }] } },
+    ...[['Revenue', '$48,260', '+18.6% this month'], ['Active users', '12,846', '+12.8% this month'], ['Conversion', '4.82%', '+2.4% this month']].flatMap(([title, value, trend], i) => [
+      { id: `metric-${i}`, type: 'section', parentId: null, name: title, x: 40 + i * 324, y: 132, width: 312, height: 160, background: ['#f0edff', '#edf7f2', '#fff4e8'][i], color: '#252938', radius: 16, fontSize: 16, content: {} },
+      { id: `metric-title-${i}`, type: 'text', parentId: `metric-${i}`, name: `${title} label`, x: 20, y: 10, width: 272, height: 60, background: ['#f0edff', '#edf7f2', '#fff4e8'][i], color: '#656778', radius: 0, fontSize: 15, content: { runs: [{ text: title, bold: false, italic: false }] } },
+      { id: `metric-value-${i}`, type: 'text', parentId: `metric-${i}`, name: `${title} value`, x: 20, y: 56, width: 272, height: 92, background: ['#f0edff', '#edf7f2', '#fff4e8'][i], color: '#252938', radius: 0, fontSize: 24, content: { runs: [{ text: value + '\n', bold: true, italic: false }, { text: trend, bold: false, italic: false }] } }
+    ]),
+    { id: 'revenue-chart', type: 'bar', parentId: null, name: 'Revenue overview', x: 40, y: 320, width: 614, height: 330, background: '#ffffff', color: '#252938', radius: 16, fontSize: 16, content: { title: 'Revenue overview', labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], values: [24, 38, 31, 48, 42, 61], accent: '#7962e9' } },
+    { id: 'traffic-chart', type: 'line', parentId: null, name: 'Audience growth', x: 674, y: 320, width: 326, height: 330, background: '#ffffff', color: '#252938', radius: 16, fontSize: 16, content: { title: 'Audience growth', labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], values: [18, 32, 26, 48, 42, 68], accent: '#54aa89' } },
+    { id: 'image', type: 'image', parentId: null, name: 'Workspace inspiration', x: 40, y: 680, width: 400, height: 240, background: '#f0edff', color: '#252938', radius: 16, fontSize: 16, content: { src: 'assets/landscape.svg', alt: 'Abstract lavender mountain landscape', fit: 'cover' } },
+    { id: 'note', type: 'text', parentId: null, name: 'Team note', x: 466, y: 690, width: 514, height: 220, background: '#ffffff', color: '#34364a', radius: 12, fontSize: 22, content: { runs: [{ text: 'Good things are taking shape.\n\n', bold: true, italic: false }, { text: 'A space for the numbers that matter, the ideas worth exploring, and everything you’re building next.', bold: false, italic: false }] } }
+  ]
+};
